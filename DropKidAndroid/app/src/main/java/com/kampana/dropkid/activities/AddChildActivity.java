@@ -14,8 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.kampana.dropkid.R;
+import com.kampana.dropkid.utils.StorageUtils;
+
+import javax.inject.Inject;
 
 /**
  * Created by daniell on 10/06/16.
@@ -24,6 +26,8 @@ public class AddChildActivity extends Activity implements TextWatcher {
 
     private static int RESULT_SELECT_CHILD_IMAGE = 1;
 
+    @Inject
+    private StorageUtils storageUtils;
 
     private ImageView childImage;
     private EditText childName;
@@ -57,7 +61,6 @@ public class AddChildActivity extends Activity implements TextWatcher {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 

@@ -1,4 +1,4 @@
-package com.kampana.dropkid;
+package com.kampana.dropkid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,17 +9,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.kampana.dropkid.activities.AddChildActivity;
-import com.kampana.dropkid.activities.DropKidActivity;
+import com.kampana.dropkid.R;
+import com.kampana.dropkid.utils.StorageUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    private StorageUtils storageUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        storageUtils.init(getApplicationContext());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

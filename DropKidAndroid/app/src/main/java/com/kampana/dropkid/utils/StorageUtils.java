@@ -3,9 +3,14 @@ package com.kampana.dropkid.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
+import javax.inject.Singleton;
+
 /**
  * Created by daniell on 11/06/16.
  */
+@Singleton
 public class StorageUtils {
 
     public static final String appKey = "com.kampana.dropkid";
@@ -30,6 +35,10 @@ public class StorageUtils {
     public void writeString(String prefsKey, String value) {
         validateInit();
         prefs.edit().putString(prefsKey, value).apply();
-    }
 
+    }
+    public void writeStringSet(String prefsKey, Set<String> value) {
+        validateInit();
+        prefs.edit().putStringSet(prefsKey, value).apply();
+    }
 }
