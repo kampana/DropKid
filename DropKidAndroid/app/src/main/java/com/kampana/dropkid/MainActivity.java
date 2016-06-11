@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.kampana.dropkid.activities.AddChildActivity;
+import com.kampana.dropkid.activities.DropKidActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
                 openAddNewChildActivity();
             }
         });
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent addNewChildIntent = new Intent(MainActivity.this, DropKidActivity.class);
+                startActivity(addNewChildIntent);
+            }
+        }, 10000);
     }
 
     private void openAddNewChildActivity() {

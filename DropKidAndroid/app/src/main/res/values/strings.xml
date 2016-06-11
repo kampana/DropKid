@@ -10,5 +10,7 @@
     <!-- General -->
     <string name="button_save">Save</string>
     <string name="button_cancel">Cancel</string>
+    <string name="its_time_to_drop_some_kids">Its time to drop some kids!</string>
+    <string name="jonathan_is_in">Jonathan is in</string>
 
 </resources>
