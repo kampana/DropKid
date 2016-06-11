@@ -16,12 +16,20 @@ public class StorageUtils {
         prefs = context.getSharedPreferences(appKey, Context.MODE_PRIVATE);
     }
 
+    private void validateInit() {
+        if (prefs == null) {
+           throw new IllegalStateException("You must call init before using the prefs.");
+        }
+    }
+
     public String readString(String prefsKey, String defaultValue) {
+        validateInit();
         return prefs.getString(prefsKey, defaultValue);
     }
 
     public void writeString(String prefsKey, String value) {
-        prefs.edit().putString(prefsKey, value);
+        validateInit();
+        prefs.edit().putString(prefsKey, value).apply();
     }
 
 }

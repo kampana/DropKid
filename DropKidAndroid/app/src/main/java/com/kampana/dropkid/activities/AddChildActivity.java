@@ -31,12 +31,6 @@ public class AddChildActivity extends Activity implements TextWatcher {
     private EditText pickupTime;
     private Button saveButton;
     private Button cancelButton;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +39,6 @@ public class AddChildActivity extends Activity implements TextWatcher {
         bindViews();
 
         addListenersAndValidators();
-
-
 
     }
 
@@ -65,7 +57,7 @@ public class AddChildActivity extends Activity implements TextWatcher {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO store the data
+
             }
         });
 
