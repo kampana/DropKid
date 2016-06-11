@@ -96,12 +96,12 @@ public class AddChildActivity extends Activity implements TextWatcher {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
 
-        if (requestCode == RESULT_SELECT_CHILD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        if (requestCode == RESULT_SELECT_CHILD_IMAGE && resultCode == RESULT_OK && null != intent) {
+             Uri selectedImage = intent.getData();
+           String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
@@ -111,8 +111,8 @@ public class AddChildActivity extends Activity implements TextWatcher {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            ImageView imageView = (ImageView) findViewById(R.id.childImage);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+            childImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
         }
     }
