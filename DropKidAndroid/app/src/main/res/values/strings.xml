@@ -1,10 +1,10 @@
 <resources>
-    <!--Add Child Activity-->
+    <!--Add Kid Activity-->
     <string name="app_name">DropKid</string>
     <string name="action_settings">Settings</string>
     <string name="label_drop_off_time">Drop off time (HH:mm)</string>
     <string name="label_pickup_time">Pick up time (HH:mm)</string>
-    <string name="child_name">Child name</string>
+    <string name="kid_name">Kid name</string>
     <string name="error_complete_details">Please complete all details</string>
     <string name="error_empty_name">Please fill the name</string>
     <!-- General -->

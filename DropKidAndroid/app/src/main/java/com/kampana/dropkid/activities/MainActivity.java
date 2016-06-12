@@ -10,22 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kampana.dropkid.R;
-import com.kampana.dropkid.utils.StorageUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.inject.Inject;
-
 public class MainActivity extends AppCompatActivity {
-
-    @Inject
-    private StorageUtils storageUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        storageUtils.init(getApplicationContext());
+        //TODO storageUtils.init(getApplicationContext());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
-                openAddNewChildActivity();
+                openAddNewKidActivity();
             }
         });
 
@@ -45,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent addNewChildIntent = new Intent(MainActivity.this, DropKidActivity.class);
-                startActivity(addNewChildIntent);
+                Intent addNewKidIntent = new Intent(MainActivity.this, DropKidActivity.class);
+                startActivity(addNewKidIntent);
             }
         }, 10000);
     }
 
-    private void openAddNewChildActivity() {
-        Intent addNewChildIntent = new Intent(MainActivity.this, AddChildActivity.class);
+    private void openAddNewKidActivity() {
+        Intent addNewKidIntent = new Intent(MainActivity.this, AddKidActivity.class);
 //        myIntent.putExtra("key", value); //Optional parameters
-        startActivity(addNewChildIntent);
+        startActivity(addNewKidIntent);
     }
 
     @Override
