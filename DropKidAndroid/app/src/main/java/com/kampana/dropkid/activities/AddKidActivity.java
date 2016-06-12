@@ -15,6 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.kampana.dropkid.R;
+import com.kampana.dropkid.objects.Kid;
+import com.kampana.dropkid.utils.DataAccessLayer;
+
+import java.net.URI;
+
+import javax.inject.Singleton;
 
 
 /**
@@ -24,6 +30,9 @@ public class AddKidActivity extends Activity implements TextWatcher {
 
     private static int RESULT_SELECT_KID_IMAGE = 1;
 
+    @Singleton
+    DataAccessLayer dataAccessLayer;
+
 
     private ImageView kidImage;
     private EditText kidName;
@@ -31,6 +40,7 @@ public class AddKidActivity extends Activity implements TextWatcher {
     private EditText pickupTime;
     private Button saveButton;
     private Button cancelButton;
+    private URI kidImagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +67,9 @@ public class AddKidActivity extends Activity implements TextWatcher {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Kid kid = new Kid(kidImagePath, kidName.toString(), dropOffTime.toString(), pickupTime.toString());
+                //TODO URI singleton doesnt work - dataAccessLayer.saveKid(kid);
+
             }
         });
 
@@ -99,11 +112,12 @@ public class AddKidActivity extends Activity implements TextWatcher {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
+            String kidImagePathString = cursor.getString(columnIndex);
+            kidImagePath = URI.create(kidImagePathString);
             cursor.close();
 
 
-            kidImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            kidImage.setImageBitmap(BitmapFactory.decodeFile(kidImagePathString));
 
         }
     }

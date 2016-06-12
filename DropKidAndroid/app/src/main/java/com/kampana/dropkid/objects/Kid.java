@@ -1,7 +1,11 @@
 package com.kampana.dropkid.objects;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.URI;
-import java.util.Date;
 
 /**
  * Created by daniell on 11/06/16.
@@ -9,10 +13,10 @@ import java.util.Date;
 public class Kid {
     private URI image;
     private String name;
-    private Date dropOffTime;
-    private Date pickupTime;
+    private String dropOffTime;
+    private String pickupTime;
 
-    public Kid(URI image, String name, Date dropOffTime, Date pickupTime) {
+    public Kid(URI image, String name, String dropOffTime, String pickupTime) {
         this.image = image;
         this.name = name;
         this.dropOffTime = dropOffTime;
@@ -49,6 +53,13 @@ public class Kid {
         return image;
     }
 
+    public String getImagePath() {
+        if (getImage() != null) {
+            return getImage().getPath();
+        }
+        return null;
+    }
+
     public void setImage(URI image) {
         this.image = image;
     }
@@ -61,19 +72,34 @@ public class Kid {
         this.name = name;
     }
 
-    public Date getDropOffTime() {
+    public String getDropOffTime() {
         return dropOffTime;
     }
 
-    public void setDropOffTime(Date dropOffTime) {
+    public void setDropOffTime(String dropOffTime) {
         this.dropOffTime = dropOffTime;
     }
 
-    public Date getPickupTime() {
+    public String getPickupTime() {
         return pickupTime;
     }
 
-    public void setPickupTime(Date pickupTime) {
+    public void setPickupTime(String pickupTime) {
         this.pickupTime = pickupTime;
+    }
+
+    public String toJSON(){
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("name", getName());
+            jsonObject.put("imagePath", getImagePath());
+            jsonObject.put("dropOffTime", getDropOffTime());
+            jsonObject.put("pickupTime", getPickupTime());
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            Log.e(this.getClass().getName(), "Failed parsing json to string",e);
+            return "";
+        }
+
     }
 }
