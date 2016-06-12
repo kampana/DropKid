@@ -5,9 +5,12 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
+import javax.inject.Singleton;
+
 /**
  * Created by daniell on 11/06/16.
  */
+@Singleton
 public class StorageUtils {
 
     public static final String appKey = "com.kampana.dropkid";

@@ -10,11 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.kampana.dropkid.R;
+import com.kampana.dropkid.utils.StorageUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject StorageUtils storageUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
