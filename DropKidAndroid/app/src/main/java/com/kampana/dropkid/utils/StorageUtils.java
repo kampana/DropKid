@@ -3,6 +3,8 @@ package com.kampana.dropkid.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Singleton;
@@ -32,11 +34,16 @@ public class StorageUtils {
         return prefs.getString(prefsKey, defaultValue);
     }
 
+    public Collection<String> readAllValues() {
+        Map<String, String> all = (Map<String, String>) prefs.getAll();
+        return all.values();
+    }
+
     public void writeString(String prefsKey, String value) {
         validateInit();
         prefs.edit().putString(prefsKey, value).apply();
-
     }
+
     public void writeStringSet(String prefsKey, Set<String> value) {
         validateInit();
         prefs.edit().putStringSet(prefsKey, value).apply();

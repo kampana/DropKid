@@ -11,10 +11,16 @@ import java.net.URI;
  * Created by daniell on 11/06/16.
  */
 public class Kid {
+    public static final String JSON_NAME = "name";
+    public static final String JSON_IMAGE_PATH = "imagePath";
+    public static final String JSON_DROP_OFF_TIME = "dropOffTime";
+    public static final String JSON_PICKUP_TIME = "pickupTime";
     private URI image;
     private String name;
     private String dropOffTime;
     private String pickupTime;
+
+    public Kid() {};
 
     public Kid(URI image, String name, String dropOffTime, String pickupTime) {
         this.image = image;
@@ -88,18 +94,26 @@ public class Kid {
         this.pickupTime = pickupTime;
     }
 
+
     public String toJSON(){
         JSONObject jsonObject= new JSONObject();
         try {
-            jsonObject.put("name", getName());
-            jsonObject.put("imagePath", getImagePath());
-            jsonObject.put("dropOffTime", getDropOffTime());
-            jsonObject.put("pickupTime", getPickupTime());
+            jsonObject.put(JSON_NAME, getName());
+            jsonObject.put(JSON_IMAGE_PATH, getImagePath());
+            jsonObject.put(JSON_DROP_OFF_TIME, getDropOffTime());
+            jsonObject.put(JSON_PICKUP_TIME, getPickupTime());
             return jsonObject.toString();
         } catch (JSONException e) {
             Log.e(this.getClass().getName(), "Failed parsing json to string",e);
             return "";
         }
+    }
 
+    public void fromJSON(String json) throws JSONException {
+        JSONObject jsonObject = new JSONObject(json);
+        setName(jsonObject.getString(JSON_NAME));
+        setImage(URI.create(jsonObject.getString(JSON_IMAGE_PATH)));
+        setDropOffTime(jsonObject.getString(JSON_DROP_OFF_TIME));
+        setPickupTime(jsonObject.getString(JSON_PICKUP_TIME));
     }
 }
